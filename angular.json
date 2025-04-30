@@ -29,12 +29,19 @@
               {
                 "glob": "**/*",
                 "input": "public"
+              },
+              {
+                "glob": "**/*",
+                "input": "src/libs",
+                "output": "/libs"
               }
             ],
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "src/libs/lib-jitsi-meet/dist/umd/lib-jitsi-meet.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -62,6 +69,12 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "ssl": true,
+            "sslKey": "ssl/localhost-key.pem",
+            "sslCert": "ssl/localhost-cert.pem",
+            "port": 4200
+          },
           "configurations": {
             "production": {
               "buildTarget": "jitsimeet-ui-poc:build:production"
