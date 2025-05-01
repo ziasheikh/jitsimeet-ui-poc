@@ -1,11 +1,30 @@
-<div id="local-video-container"></div>
+<!-- jitsi-meat.component.html -->
+<div class="video-conference-container">
+    <div class="video-grid" #remoteContainer>
+        
+    </div>
 
-<button (click)="muteMic()">Mute Mic</button>
-<button (click)="unmuteMic()">Unmute Mic</button>
-<button (click)="turnOffCamera()">Turn Camera Off</button>
-<button (click)="turnOnCamera()">Turn Camera On</button>
-<button (click)="startScreenShare()">Start Screen Share</button>
-<button (click)="stopScreenShare()">Stop Screen Share</button>
+    <div class="local-video-pip">
+        <video #localVideo autoplay muted playsinline></video>
+    </div>
 
-<h3>Remote Participants:</h3>
-<div id="remote-video-container" style="display: flex; flex-wrap: wrap;"></div>
+    <div class="controls-container">
+        <div class="controls">
+            <button class="control-button" (click)="toggleMic()" [class.active]="!isMuted">
+                <i class="pi" [ngClass]="isMuted ? 'pi-microphone' : 'pi-microphone'"></i>
+            </button>
+
+            <button class="control-button" (click)="toggleCamera()" [class.active]="isCameraOn">
+                <i class="pi" [ngClass]="isCameraOn ? 'pi-video' : 'pi-video'"></i>
+            </button>
+
+            <button class="control-button" (click)="toggleScreenShare()" [class.active]="isSharingScreen">
+                <i class="pi pi-desktop"></i>
+            </button>
+
+            <button class="control-button end-call" (click)="endCall()">
+                <i class="pi pi-phone"></i>
+            </button>
+        </div>
+    </div>
+</div>
